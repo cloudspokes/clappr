@@ -14,7 +14,7 @@
   @include nested-reset;
   @include no-select;
   @include font-smoothing;
-  @include transform(translate3d(0,0,0));
+/* @include transform(translate3d(0,0,0)); */
   position: relative;
   margin: 0;
   padding: 0;
