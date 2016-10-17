@@ -13,11 +13,13 @@ module.exports = {
   module: {
     loaders: [
       {
+        exclude: /node_modules/,
         test: /\.js$/,
         loader: 'babel-loader'
         // config in .babelrc
       },
       {
+        exclude: /node_modules/,
         test: /\.scss$/,
         loaders: ['css', 'sass?includePaths[]='
             + require('node-bourbon').includePaths
@@ -27,12 +29,15 @@ module.exports = {
         include: path.resolve(__dirname, 'src')
       },
       {
+        exclude: /node_modules/,
         test: /\.(png|woff|eot|ttf|swf|cur)/, loader: 'url-loader?limit=1'
       },
       {
+        exclude: /node_modules/,
         test: /\.svg/, loader: 'svg-inline'
       },
       {
+        exclude: /node_modules/,
         test: /\.html/, loader: 'html?minimize=false'
       }
     ]
