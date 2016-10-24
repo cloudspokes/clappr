@@ -420,7 +420,13 @@ HTML5Video._mimeTypesForUrl = function(resourceUrl, mimeTypesByExtension, mimeTy
 HTML5Video._canPlay = function(type, mimeTypesByExtension, resourceUrl, mimeType) {
   let mimeTypes = HTML5Video._mimeTypesForUrl(resourceUrl, mimeTypesByExtension, mimeType)
   const media = document.createElement(type)
-  return !!find(mimeTypes, (mediaType) => !!media.canPlayType(mediaType).replace(/no/, ''))
+  
+  return !!find(mimeTypes, (mediaType) => {
+    if (typeof media.canPlayType !== 'function') {
+      return false
+    }
+    return !!media.canPlayType(mediaType).replace(/no/, '')
+  })
 }
 
 HTML5Video.canPlay = function(resourceUrl, mimeType) {
