@@ -419,12 +419,12 @@ HTML5Video._mimeTypesForUrl = function(resourceUrl, mimeTypesByExtension, mimeTy
 
 HTML5Video._canPlay = function(type, mimeTypesByExtension, resourceUrl, mimeType) {
   let mimeTypes = HTML5Video._mimeTypesForUrl(resourceUrl, mimeTypesByExtension, mimeType)
+  const nav = window.navigator.userAgent
+  if (/qtbrowser/.test(nav) || /xre/i.test(nav)) {
+    return true;
+  }
   const media = document.createElement(type)
-  
   return !!find(mimeTypes, (mediaType) => {
-    if (typeof media.canPlayType !== 'function') {
-      return false
-    }
     return !!media.canPlayType(mediaType).replace(/no/, '')
   })
 }
